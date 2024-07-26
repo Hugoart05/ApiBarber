@@ -28,56 +28,59 @@ import { tipoDB } from '../../@types'
     
     
 
-    // export function TabelaUsuarios(){
+    export function TabelaUsuarios(){
 
-    //     const usuarios = sequelize.define('usuarios',{
-    //         id:{
-    //             type: DataTypes.INTEGER,
-    //             primaryKey: true,
-    //             autoIncrement: true
-    //         },
-    //         nome:{
-    //             type: DataTypes.STRING,
-    //             allowNull: false,
-    //         },
-    //         email:{
-    //             type: DataTypes.STRING,
-    //             allowNull: false,
-    //         },
-    //         telefone:{
-    //             type: DataTypes.STRING,
-    //             allowNull: false,
-    //         },
-    //         senha:{
-    //             type: DataTypes.STRING,
-    //             allowNull: false,
-    //         }
-    //     })
+        const usuarios = sequelize.define('usuarios',{
+            id:{
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            nome:{
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            email:{
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            telefone:{
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            senha:{
+                type: DataTypes.STRING,
+                allowNull: false,
+            }
+        })
 
-    //     const funcionarios = sequelize.define('funcionarios',{
-    //         id:{
-    //             type: DataTypes.INTEGER,
-    //             primaryKey: true,
-    //             autoIncrement: true
-    //         },
-    //         nome:{
-    //             type: DataTypes.STRING,
-    //             allowNull: false,
-    //         },
-    //         cep:{
-    //             type: DataTypes.INTEGER,
-    //             allowNull: false,
-    //         },
-    //         telefone:{
-    //             type: DataTypes.STRING,
-    //             allowNull: false,
-    //         },
-    //         senha:{
-    //             type: DataTypes.STRING,
-    //             allowNull: false,
-    //         }
-    //     })
+        const funcionarios = sequelize.define('funcionarios',{
+            id:{
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            nome:{
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            cep:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            usuario_id:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            url_logo:{
+                type: DataTypes.TEXT,
+                allowNull: false,
+            },
+            url_planoDeFundo:{
+                type: DataTypes.TEXT,
+                allowNull: false,
+            },
+        })
     
-    //  usuarios.sync({force: true})
-    // }
-    
+     usuarios.sync({force: true})
+    }
