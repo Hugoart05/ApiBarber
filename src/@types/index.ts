@@ -11,3 +11,8 @@ export interface tipoValidacao{
     status: boolean
     mensagem: string
 }
+
+export interface tipoCategoria{
+    id: number
+    nome: string
+}

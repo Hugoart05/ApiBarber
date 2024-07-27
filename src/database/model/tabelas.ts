@@ -1,6 +1,5 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import 'dotenv/config'
-import { tipoUsuario } from '../../@types';
 
 // Verifique se as variáveis de ambiente estão definidas
 const database = process.env.DB_BASE || 'default_db';
@@ -38,7 +37,7 @@ export const usuarios = sequelize.define('usuarios', {
 }, {
     timestamps: false
 })
-const categoria = sequelize.define('categoria', {
+export const categorias = sequelize.define('categorias', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -90,7 +89,7 @@ const estabelecimento = sequelize.define('funcionarios', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: categoria,
+            model: categorias,
             key: 'id'
         }
     },
@@ -180,7 +179,7 @@ export async function criarTabelas() {
 
     //  faz os relacionamentos  1 pra 1 
     estabelecimento.belongsTo(usuarios, { foreignKey: 'id' })
-    estabelecimento.belongsTo(categoria, { foreignKey: 'id' })
+    estabelecimento.belongsTo(categorias, { foreignKey: 'id' })
     funcionarios.belongsTo(usuarios, { foreignKey: 'id' })
     agenda.belongsTo(funcionarios, { foreignKey: 'id' })
     agenda.belongsTo(usuarios, { foreignKey: 'id' })
@@ -195,8 +194,3 @@ export async function criarTabelas() {
         console.log('Tabelas sincronizadas')
     }).catch(error => console.log('Erro ao sincronizar tabelas: ', error))
 }
-
-
-
-
-

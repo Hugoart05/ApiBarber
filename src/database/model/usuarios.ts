@@ -2,14 +2,12 @@ import { tipoUsuario, tipoValidacao } from "../../@types"
 import { usuarios } from "./tabelas"
 
 
-
 export async function cadastrarUsuario(usuario: tipoUsuario):Promise<tipoValidacao> {
     const { nome, email, telefone, senha } = usuario
 
     const {status} = await pesquisarEmail(email)
     if (status) {
         try {
-
             await usuarios.create({
                 nome,
                 email,
