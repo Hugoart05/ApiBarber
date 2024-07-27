@@ -1,8 +1,9 @@
 import express from 'express'
-import {TabelaUsuarios} from './database/model/tabelas'
+import {criarTabelas} from './database/model/tabelas'
 const app = express()
 
-TabelaUsuarios()
+criarTabelas()
+
 app.listen(8080,()=>{
     console.log(`servidor rodando na porta 8080`)
 })

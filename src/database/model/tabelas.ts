@@ -1,34 +1,17 @@
-import { Sequelize, DataTypes, Model, InferAttributes, InferCreationAttributes, Optional } from 'sequelize'
+import { Sequelize, DataTypes} from 'sequelize'
 import 'dotenv/config'
-import { tipoDB } from '../../@types'
+
 
     
     
     
 
-    const sequelize = new Sequelize('test','root','553699',{
-        host: 'localhost',
-        dialect: 'mysql'
-    })
+const sequelize = new Sequelize('buscafacil','root','553699',{
+    host: 'localhost',
+    dialect: 'mysql'
+})
 
-    interface UserAtributos{
-        id:number
-        nome:string
-    }
-
-    type UserCreationAtributos = Optional<UserAtributos,"id">;
-
-    class Usuario extends Model<UserAtributos, UserCreationAtributos>{
-        declare id: number;
-        declare nome:string;
-    }
-
-    
-        
-    
-    
-
-    export function TabelaUsuarios(){
+export function criarTabelas(){
 
         const usuarios = sequelize.define('usuarios',{
             id:{
@@ -51,10 +34,24 @@ import { tipoDB } from '../../@types'
             senha:{
                 type: DataTypes.STRING,
                 allowNull: false,
-            }
+            },  
+        },{ 
+            timestamps: false
         })
-
-        const funcionarios = sequelize.define('funcionarios',{
+        const categoria = sequelize.define('categoria',{
+            id:{
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            nome:{
+                type: DataTypes.STRING,
+                allowNull: false,
+            }
+        },{
+            timestamps: false
+        })
+        const estabelecimento = sequelize.define('funcionarios',{
             id:{
                 type: DataTypes.INTEGER,
                 primaryKey: true,
@@ -71,6 +68,10 @@ import { tipoDB } from '../../@types'
             usuario_id:{
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                references: {
+                    model: usuarios,
+                    key: 'id'
+                }
             },
             url_logo:{
                 type: DataTypes.TEXT,
@@ -80,7 +81,117 @@ import { tipoDB } from '../../@types'
                 type: DataTypes.TEXT,
                 allowNull: false,
             },
+            descricao:{
+                type: DataTypes.TEXT,
+                allowNull: false,
+
+            },
+            categoria_id:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                references:{
+                    model: categoria,
+                    key: 'id'
+                }
+            },
+            
+        },{
+            timestamps: false
         })
-    
-     usuarios.sync({force: true})
-    }
+        const servicos = sequelize.define('servicos',{
+            id:{
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            nome:{
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            preco:{
+                type: DataTypes.DECIMAL(11,10),
+                allowNull: false,
+            },
+            descricao:{
+                type: DataTypes.TEXT,
+                allowNull: false,
+            }
+            
+        },{
+            timestamps: false
+        })
+        const funcionarios = sequelize.define('funcionarios',{
+            id:{
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            usuario_id:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                references:{
+                    model: usuarios,
+                    key: 'id'
+                }
+            }
+        })
+        const agenda = sequelize.define('agenda',{
+            id:{
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement:true
+            },
+            funcionario_id:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                references:{
+                    model: funcionarios,
+                    key: 'id'
+                }
+            },
+            cliente_id:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                references:{
+                    model: usuarios,
+                    key: 'id'
+                }
+            },
+            servico_id:{
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                references:{
+                    model: servicos,
+                    key: 'id'
+                }
+            },
+            metodo_de_pagamento:{
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            data:{
+                type: DataTypes.DATE,
+                allowNull: false
+            }
+        },{
+            timestamps: false
+        })
+
+        
+        //  faz os relacionamentos  1 pra 1 
+        estabelecimento.belongsTo(usuarios,{foreignKey: 'id'})
+        estabelecimento.belongsTo(categoria,{foreignKey:'id'})
+        funcionarios.belongsTo(usuarios,{foreignKey: 'id'})
+        agenda.belongsTo(funcionarios,{foreignKey: 'id'})
+        agenda.belongsTo(usuarios,{foreignKey:'id'})
+        agenda.belongsTo(servicos,{foreignKey: 'id'})
+        
+        // faz relacionamentos mts pra mts e cria a tabela
+        funcionarios.belongsToMany(servicos, {through: 'funcionariosServicos', timestamps: false})
+        servicos.belongsToMany(funcionarios, {through: 'funcionariosServicos', timestamps: false})
+
+        //  cria as tabelas 
+    sequelize.sync({ force: true }).then(() => {
+        console.log('Tabelas sincronizadas');
+    }).catch(error => console.log('Erro ao sincronizar tabelas: ', error))
+}
