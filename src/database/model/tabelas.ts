@@ -1,15 +1,16 @@
 import { Sequelize, DataTypes} from 'sequelize'
 import 'dotenv/config'
 
+// Verifique se as variáveis de ambiente estão definidas
+const database = process.env.DB_BASE || 'default_db';
+const username = process.env.DB_USER || 'root';
+const password = process.env.DB_PASSWORD || 'password';
+const host = process.env.DB_HOST || 'localhost';
 
-    
-    
-    
-
-const sequelize = new Sequelize('buscafacil','root','553699',{
-    host: 'localhost',
-    dialect: 'mysql'
-})
+const sequelize = new Sequelize(database, username, password, {
+  host: host,
+  dialect: 'mysql'
+});
 
 export function criarTabelas(){
 
@@ -192,6 +193,6 @@ export function criarTabelas(){
 
         //  cria as tabelas 
     sequelize.sync({ force: true }).then(() => {
-        console.log('Tabelas sincronizadas');
+        console.log('Tabelas sincronizadas')
     }).catch(error => console.log('Erro ao sincronizar tabelas: ', error))
 }
