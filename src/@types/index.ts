@@ -16,3 +16,9 @@ export interface tipoCategoria{
     id: number
     nome: string
 }
+export interface tipoServicos{
+    id: number
+    nome: string
+    preco: number
+    descricao: string
+}

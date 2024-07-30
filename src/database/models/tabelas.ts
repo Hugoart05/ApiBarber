@@ -97,7 +97,7 @@ const estabelecimento = sequelize.define('funcionarios', {
 }, {
     timestamps: false
 })
-const servicos = sequelize.define('servicos', {
+export const servicos = sequelize.define('servicos', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -119,7 +119,7 @@ const servicos = sequelize.define('servicos', {
 }, {
     timestamps: false
 })
-const funcionarios = sequelize.define('funcionarios', {
+export const funcionarios = sequelize.define('funcionarios', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -128,11 +128,14 @@ const funcionarios = sequelize.define('funcionarios', {
     usuario_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique: true,
         references: {
             model: usuarios,
             key: 'id'
         }
     }
+},{
+    timestamps: false
 })
 const agenda = sequelize.define('agenda', {
     id: {
@@ -175,6 +178,31 @@ const agenda = sequelize.define('agenda', {
 }, {
     timestamps: false
 })
+export const funcionariosServicos = sequelize.define('funcionarios_servicos',{
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    funcionarios_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: funcionarios,
+            key: 'id'
+        }
+    },
+    servicos_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: servicos,
+            key: 'id'
+        }
+    },
+},{
+    timestamps: false
+})
 export async function criarTabelas() {
 
     //  faz os relacionamentos  1 pra 1 
@@ -186,8 +214,8 @@ export async function criarTabelas() {
     agenda.belongsTo(servicos, { foreignKey: 'id' })
 
     // faz relacionamentos mts pra mts e cria a tabela
-    funcionarios.belongsToMany(servicos, { through: 'funcionariosServicos', timestamps: false })
-    servicos.belongsToMany(funcionarios, { through: 'funcionariosServicos', timestamps: false })
+    funcionarios.belongsToMany(servicos, { through: 'funcionarios_servicos', foreignKey: 'funcionarios_id' })
+    servicos.belongsToMany(funcionarios, { through: 'funcionarios_servicos', foreignKey: 'servicos_id' })
 
     //  cria as tabelas 
     await sequelize.sync().then(() => {

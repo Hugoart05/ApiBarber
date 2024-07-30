@@ -1,7 +1,7 @@
 import express from 'express'
-import {criarTabelas} from './database/model/tabelas'
+import {criarTabelas} from './database/models/tabelas'
 import { tipoUsuario } from './@types'
-import { atualizandoUsuario, deletarUsuario} from './database/model/usuarios'
+import { adicionarFuncionarios_servicos } from './database/models/funcionarios_servicos'
 const app = express()
 
 const usuario: tipoUsuario ={
@@ -14,10 +14,10 @@ const usuario: tipoUsuario ={
 
 // cadastrarUsuario(usuario)
 async function teste(){
-    const {mensagem} = await deletarUsuario(usuario.email)
-    console.log(mensagem)
+    await adicionarFuncionarios_servicos(1,'corte na tesoura')
 }
-// teste()
+
+teste()
 app.listen(8080,()=>{
     // criarTabelas()
     console.log(`servidor rodando na porta 8080`)

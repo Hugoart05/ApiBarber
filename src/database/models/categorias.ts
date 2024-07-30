@@ -19,7 +19,6 @@ export async function cadastrarCategoria(categoria: tipoCategoria):Promise<tipoV
         return {status: false, mensagem: mensagem}
     }
 }
-
 export async function pesquisarCategoria(nome: string):Promise<tipoValidacao> {
 
     const valida = await categorias.findOne({ where: { nome: nome } })
@@ -29,14 +28,13 @@ export async function pesquisarCategoria(nome: string):Promise<tipoValidacao> {
         return {status:false, mensagem:'essa categoria existe'}
     }
 }
-
 export async function deletarCategoria(nome: string):Promise<tipoValidacao> {
     const valida = await categorias.findOne({ where: { nome: nome } })
     if (valida === null) {
         return {status:false, mensagem:'categoria nao encontrada'}
     } else {
         try {
-            categorias.destroy({ where: { nome: nome } })
+            await categorias.destroy({ where: { nome: nome } })
             return {status:true, mensagem:'categoria deletada'}
         } catch (error) {
             return {status:false, mensagem:`erro ao deletar categoria: ${error}`}

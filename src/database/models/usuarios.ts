@@ -66,7 +66,7 @@ export async function deletarUsuario(email: string):Promise<tipoValidacao> {
         return {status:false, mensagem:'usuario nao encontrado'}
     } else {
         try {
-            usuarios.destroy({ where: { email: email } })
+            await usuarios.destroy({ where: { email: email } })
             return {status:true, mensagem:'usuario deletado'}
         } catch (error) {
             return {status:false, mensagem:`erro ao deletar usuario: ${error}`}
