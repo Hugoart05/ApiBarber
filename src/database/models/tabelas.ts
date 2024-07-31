@@ -137,7 +137,7 @@ export const funcionarios = sequelize.define('funcionarios', {
 },{
     timestamps: false
 })
-const agenda = sequelize.define('agenda', {
+export const agenda = sequelize.define('agenda', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

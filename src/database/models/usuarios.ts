@@ -27,13 +27,11 @@ export async function cadastrarUsuario(usuario: tipoUsuario):Promise<tipoValidac
 export async function pesquisarEmail(email: string):Promise<tipoValidacao> {
 
     const validaEmail = await usuarios.findOne({ where: { email: email } })
-    if (validaEmail === null) {
+    if (validaEmail === null)
         return {status:true, mensagem:'email disponivel'}
-    } else {
-        return {status:false, mensagem:'email indisponivel'}
-    }
 
-
+    return {status:false, mensagem:'email indisponivel'}
+    
 }
 export async function atualizandoUsuario(usuario:tipoUsuario):Promise<tipoValidacao> {
     const {nome, email, telefone, senha} = usuario
