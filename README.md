@@ -3,10 +3,7 @@
 ##INSTRUÕES PASSO A PASSO PARA RODAR O PROJETO
  ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 # 1 - Instalar dependencias do projeto
-  npm init
-  npm i express
-  npm i --save--dev @types/express @types/node nodemon ts-node
-  npm i sequelize
+  npm install
 
 # 2 - Editar "script" no arquivo package.json
   "scripts": {
