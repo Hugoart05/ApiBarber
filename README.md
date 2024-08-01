@@ -1,5 +1,7 @@
 # apibarber
 
+#PASSO A PASSO
+
 # 1 - Instalar dependencias do projeto
 npm init
 npm i express
