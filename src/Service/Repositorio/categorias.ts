@@ -1,5 +1,5 @@
 import { tipoCategoria, tipoValidacao } from '../../@types'
-import {categorias} from './tabelas'
+import { categorias } from '../../Models/Categorias'
 
 export async function cadastrarCategoria(categoria: tipoCategoria):Promise<tipoValidacao> {
     const { nome } = categoria
@@ -41,3 +41,4 @@ export async function deletarCategoria(nome: string):Promise<tipoValidacao> {
         }
     }
 }
+

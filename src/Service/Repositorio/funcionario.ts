@@ -1,5 +1,6 @@
 import { tipoValidacao } from "../../@types"
-import { funcionarios, usuarios } from "./tabelas"
+import { funcionarios } from "../../Models/Funcionario"
+import { usuarios } from "../../Models/Usuarios"
 
 export async function adicionarFuncionario(id:number):Promise<tipoValidacao> {
     const usuario = await usuarios.findByPk(id)

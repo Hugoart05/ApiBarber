@@ -1,5 +1,5 @@
 import { tipoUsuario, tipoValidacao } from "../../@types"
-import { usuarios } from "./tabelas"
+import { usuarios } from "../../Models/Usuarios"
 
 
 export async function cadastrarUsuario(usuario: tipoUsuario):Promise<tipoValidacao> {
@@ -21,9 +21,8 @@ export async function cadastrarUsuario(usuario: tipoUsuario):Promise<tipoValidac
     } else {
         return {status: false, mensagem:`email indisponivel`}
     }
-
-
 }
+
 export async function pesquisarEmail(email: string):Promise<tipoValidacao> {
 
     const validaEmail = await usuarios.findOne({ where: { email: email } })
@@ -33,6 +32,7 @@ export async function pesquisarEmail(email: string):Promise<tipoValidacao> {
     return {status:false, mensagem:'email indisponivel'}
     
 }
+
 export async function atualizandoUsuario(usuario:tipoUsuario):Promise<tipoValidacao> {
     const {nome, email, telefone, senha} = usuario
     const {status} = await pesquisarEmail(email)

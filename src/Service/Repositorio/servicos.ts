@@ -1,5 +1,5 @@
 import { tipoServicos, tipoValidacao } from '../../@types'
-import {servicos} from './tabelas'
+import { servicos } from '../../Models/Servico'
 
 export async function cadastrarCategoria(servico: tipoServicos):Promise<tipoValidacao> {
     const { nome } = servico

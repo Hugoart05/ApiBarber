@@ -1,5 +1,7 @@
 import { Op } from "sequelize"
-import { funcionarios, funcionariosServicos, servicos } from "./tabelas"
+import { funcionarios } from "../../Models/Funcionario"
+import { servicos } from "../../Models/Servico"
+import { funcionariosServicos } from "../../Models/FuncionarioServico"
 
 export async function adicionarFuncionarios_servicos(id: number, nome:string) {
     const funcionario = await funcionarios.findByPk(id)

@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
 import { tipoUsuario } from "../@types"
-import { cadastrarUsuario } from "../database/models/usuarios"
+import { cadastrarUsuario } from "../Service/Repositorio/usuarios"
 import  {validaAtualizacaoUsuario, validarUsuario}  from '../validations/validacaoUsuario'
 
 export async function CadastrarUsuarioNoBanco(req: Request, res: Response){

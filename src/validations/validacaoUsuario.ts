@@ -1,5 +1,5 @@
 import { tipoUsuario, tipoValidacao } from "../@types"
-import { pesquisarEmail } from "../database/models/usuarios"
+import { pesquisarEmail } from "../Service/Repositorio/usuarios"
 import { validarCampos, validarCaracteresEmail } from "./validacoesGlobais"
 
 export async function validarUsuario(usuario: tipoUsuario): Promise<tipoValidacao> {
