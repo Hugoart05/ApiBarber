@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { AtualizarUsuarioNoBanco, CadastrarUsuarioNoBanco } from '../controllers/usuarioController'
+import { AtualizarUsuarioNoBanco, CadastrarUsuarioNoBanco } from '../Controllers/usuarioController'
 import { sequelize } from '../db/Instancia'
 
 
