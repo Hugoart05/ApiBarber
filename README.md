@@ -1,7 +1,7 @@
 # apibarber
 
 ##INSTRUÕES PASSO A PASSO PARA RODAR O PROJETO
-
+ ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 # 1 - Instalar dependencias do projeto
   npm init
   npm i express
@@ -43,6 +43,6 @@
 # 5 - Executar
     Comando no terminal : "npm run dev"
 
-    ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+   
 
   
