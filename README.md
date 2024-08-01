@@ -1,9 +1,12 @@
 # apibarber
+
+# 1 - Instalar dependencias do projeto
 npm init
 npm i express
 npm i --save--dev @types/express @types/node nodemon ts-node
+npm i sequelize
 
-
+# 2 - Editar "script" no arquivo package.json
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon", // Inicia o servidor no nodemon
@@ -12,8 +15,7 @@ npm i --save--dev @types/express @types/node nodemon ts-node
 
   cria o .gitignore
  
-  criar tsconfig.json e cola
-
+ # 3 -  Editar o arquivo tsconfig 
   {
   "compilerOptions": {
     "target": "es5",                          
@@ -29,7 +31,7 @@ npm i --save--dev @types/express @types/node nodemon ts-node
   }
 }
 
-criar o arquivo nodemon.json
+# 4 - Criar o arquivo nodemon.json
 {
   "watch": ["src"],
   "ext": ".ts,.js",
