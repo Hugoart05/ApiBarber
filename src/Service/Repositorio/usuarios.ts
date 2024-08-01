@@ -71,3 +71,9 @@ export async function deletarUsuario(email: string):Promise<tipoValidacao> {
         }
     }
 }
+
+export class UsuarioService  {
+    consolelog(){
+        return ['teste']
+    }
+}

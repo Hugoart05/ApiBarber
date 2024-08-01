@@ -11,6 +11,10 @@
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"  // Adicione esta linha para incluir o diretório personalizado
+    ]
   }
 }

@@ -1,7 +1,9 @@
 import {Request, Response} from 'express'
 import { tipoUsuario } from "../@types"
-import { cadastrarUsuario } from "../Service/Repositorio/usuarios"
-import  {validaAtualizacaoUsuario, validarUsuario}  from '../validations/validacaoUsuario'
+import { cadastrarUsuario, UsuarioService } from "../Service/Repositorio/usuarios"
+import  {validaAtualizacaoUsuario, validarUsuario}  from '../validators/validacaoUsuario'
+import { Body, Controller, Get, Route, Tags } from 'tsoa'
+import { get } from 'http'
 
 export async function CadastrarUsuarioNoBanco(req: Request, res: Response){
     const usuario: tipoUsuario = req.body
@@ -25,4 +27,16 @@ export async function AtualizarUsuarioNoBanco(req:Request, res:Response) {
     }catch(error){
         return res.send(error)
     }
+}
+
+@Route('usuarios')
+@Tags("Usuarios")
+export class UsuarioController extends Controller{
+    private usuairoService = new UsuarioService();
+
+    @Get('/')
+    public async getUsuario():Promise<string[]>{
+        return this.usuairoService.consolelog()
+    }
+   
 }
