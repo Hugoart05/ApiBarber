@@ -42,4 +42,7 @@
 
 # 5 - Executar
     Comando no terminal : "npm run dev"
+
+    ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+
   
