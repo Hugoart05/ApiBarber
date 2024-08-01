@@ -1,6 +1,6 @@
 # apibarber
 
-#PASSO A PASSO
+##INSTRUÕES PASSO A PASSO PARA RODAR O PROJETO
 
 # 1 - Instalar dependencias do projeto
   npm init
