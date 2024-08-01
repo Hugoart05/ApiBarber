@@ -1,8 +1,17 @@
 import express from 'express'
-import {TabelaUsuarios} from './database/model/tabelas'
-const app = express()
+import {criarTabelas} from './Models/tabelas'
+import { tipoUsuario } from './@types'
+import { adicionarFuncionarios_servicos } from './Service/Repositorio/funcionarios_servicos'
+import 'dotenv/config'
+import rotas from './routes/rotas'
 
-TabelaUsuarios()
-app.listen(8080,()=>{
-    console.log(`servidor rodando na porta 8080`)
+
+const app = express()
+app.use(express.json())
+app.use(rotas)
+
+
+app.listen(process.env.PORT,()=>{
+    criarTabelas()
+    console.log(`servidor rodando na porta ${process.env.PORT}`)
 })
