@@ -18,8 +18,7 @@ npm i sequelize
   cria o .gitignore
  
  # 3 -  Editar o arquivo tsconfig 
- <code>
-  {
+ <code>{
   "compilerOptions": {
     "target": "es5",                          
     "module": "commonjs",                    
@@ -32,12 +31,11 @@ npm i sequelize
     "esModuleInterop": true,
     "resolveJsonModule": true
   }
-}
- </code>
+}</code>
 # 4 - Criar o arquivo nodemon.json
-{
+<code>{
   "watch": ["src"],
   "ext": ".ts,.js",
   "ignore": [],
   "exec": "ts-node ./src/index.ts"
-}
+}</code>
