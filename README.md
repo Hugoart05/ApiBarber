@@ -18,6 +18,7 @@ npm i sequelize
   cria o .gitignore
  
  # 3 -  Editar o arquivo tsconfig 
+ <code>
   {
   "compilerOptions": {
     "target": "es5",                          
@@ -32,7 +33,7 @@ npm i sequelize
     "resolveJsonModule": true
   }
 }
-
+ </code>
 # 4 - Criar o arquivo nodemon.json
 {
   "watch": ["src"],
