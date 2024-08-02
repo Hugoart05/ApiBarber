@@ -26,3 +26,6 @@ export async function AtualizarUsuarioNoBanco(req:Request, res:Response) {
         return res.send(error)
     }
 }
+
+
+

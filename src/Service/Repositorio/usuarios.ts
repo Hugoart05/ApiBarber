@@ -30,7 +30,6 @@ export async function pesquisarEmail(email: string):Promise<tipoValidacao> {
         return {status:true, mensagem:'email disponivel'}
 
     return {status:false, mensagem:'email indisponivel'}
-    
 }
 
 export async function atualizandoUsuario(usuario:tipoUsuario):Promise<tipoValidacao> {

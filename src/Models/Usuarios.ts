@@ -1,5 +1,7 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../db/Instancia";
+import { ModelCtor } from "sequelize-typescript";
+import { tipoUsuario } from "../@types";
 
 export const usuarios = sequelize.define('usuarios', {
     id: {
@@ -26,3 +28,5 @@ export const usuarios = sequelize.define('usuarios', {
 }, {
     timestamps: false
 })
+
+
