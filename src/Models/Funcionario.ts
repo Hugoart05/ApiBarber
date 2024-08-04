@@ -1,6 +1,9 @@
 import { DataTypes, Model, Optional } from "sequelize"
 import { User } from "./Usuarios"
 import { sequelize } from "../db/Instancia"
+import { AllowNull } from "sequelize-typescript"
+import { Agendamento } from "./Agendamento"
+import { Estabelecimento } from "./Estabelecimento"
 
 
 export interface FuncionarioAtributos {
@@ -9,6 +12,8 @@ export interface FuncionarioAtributos {
     nome: string
     cargo?: string
     email:string
+    lat?:string
+    long?:string
 }
 
 interface FuncionarioCreationAtributos extends Optional<FuncionarioAtributos, 'id'> { }
@@ -18,7 +23,7 @@ export class Funcionario extends Model<FuncionarioAtributos, FuncionarioCreation
     public usuarioId!: number;
     public nome!: string
     public cargo?: string;
-    public email!:string
+    public email!:string;
 }
 
 Funcionario.init({
@@ -43,6 +48,7 @@ Funcionario.init({
         type:DataTypes.STRING,
         allowNull: false
     },
+    
 },
     {
         sequelize,
@@ -52,4 +58,5 @@ Funcionario.init({
 )
 
 
-
+Funcionario.hasMany(Agendamento, {foreignKey:"funcionarioId"})
+Agendamento.belongsTo(Funcionario, {foreignKey:"funcionarioId"})

@@ -12,7 +12,7 @@ export class CreateFuncionarioController {
             const {cargo, nome, email, usuarioId} = request.body
             
             this.createFuncionarioUseCase.execute({
-                cargo: 'teste',
+                cargo:cargo,
                 nome,
                 usuarioId,
                 email

@@ -21,10 +21,15 @@ export class FuncionarioRepositorio implements IFuncionarioRepositorio {
     }
 
     async save(data: FuncionarioAtributos): Promise<boolean> {
-        const { email } = data
-        await this.funcionarioSequelize.create(data)
-        const funcionario = this.funcionarioSequelize.findOne({ where: { email } })
-        return funcionario == null ? false : true
+        try {
+            const { email } = data
+            await this.funcionarioSequelize.create(data)
+            const funcionario = this.funcionarioSequelize.findOne({ where: { email } })
+            return funcionario == null ? false : true
+        }catch(error){
+            console.error(error)
+            return false
+        }
     }
 
     async delete(id: number): Promise<void> {

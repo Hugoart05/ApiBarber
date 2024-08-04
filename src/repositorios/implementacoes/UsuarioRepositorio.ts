@@ -1,3 +1,4 @@
+import { Funcionario } from "../../Models/Funcionario";
 import { User, UserAtributtes } from "../../Models/Usuarios";
 import { IUsuarioRepositorio } from "../IUsuarioRepositorio";
 import { errorMonitor } from "events";
@@ -13,8 +14,8 @@ export class UsuarioRepositorio implements IUsuarioRepositorio {
         return exists ? true : false
     }
 
-    async findById(id: number): Promise<UserAtributtes> {
-        return {} as UserAtributtes
+    async findById(id: number): Promise<UserAtributtes | null> {
+        return await this.userSequelize.findByPk(id)
     }
 
     async save(data: UserAtributtes): Promise<boolean> {
@@ -29,4 +30,9 @@ export class UsuarioRepositorio implements IUsuarioRepositorio {
     async update(data: UserAtributtes): Promise<boolean> {
         return false
     }   
+
+    async getAllFuncionarios(id:number){
+        return await this.userSequelize.findByPk(id,{include:Funcionario})
+    }
+
 }

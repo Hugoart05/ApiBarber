@@ -2,6 +2,7 @@ import { DataTypes, Model, ModelCtor, ModelStatic, Optional, } from "sequelize";
 
 import { sequelize } from "../db/Instancia";
 import { Funcionario } from "./Funcionario";
+import { Estabelecimento } from "./Estabelecimento";
 
 export interface UserAtributtes {
     id: number
@@ -53,6 +54,7 @@ User.init(
 )
 
 User.hasMany(Funcionario, {foreignKey: 'usuarioId'});
-
-
+Funcionario.belongsTo(User, {foreignKey:'usuarioId'})
+User.hasMany(Estabelecimento, {foreignKey:'usuarioId'})
+Estabelecimento.belongsTo(User,{foreignKey:'usuarioId'})
 

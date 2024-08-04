@@ -1,3 +1,4 @@
+import { FuncionarioAtributos } from "../Models/Funcionario";
 import { User, UserAtributtes } from "../Models/Usuarios";
 import { UserDTO } from "../useCases/User/CreateUser/UsuarioDto";
 
@@ -6,5 +7,6 @@ export interface IUsuarioRepositorio{
     save(data:UserDTO):Promise<boolean>
     update(data:UserAtributtes):Promise<boolean>
     delete(id:number):Promise<boolean>
-    findById(id:number):Promise<UserAtributtes>
+    findById(id:number):Promise<UserAtributtes | null>
+    getAllFuncionarios(id:number):object
 }
