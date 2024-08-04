@@ -1,17 +1,18 @@
 import express from 'express'
-import {criarTabelas} from './Models/tabelas'
-import { tipoUsuario } from './@types'
-import { adicionarFuncionarios_servicos } from './Service/Repositorio/funcionarios_servicos'
 import 'dotenv/config'
-import rotas from './routes/rotas'
-
+import { sequelize } from './db/Instancia'
+import { funcionarioRotas } from './routes/FuncionarioRotas'
+import userRotas, { } from './routes/UsuarioRotas'
+import { createUsuarioController } from './useCases/User/CreateUser'
 
 const app = express()
 app.use(express.json())
-app.use(rotas)
+//Routes 
+app.use(funcionarioRotas)
+app.use(userRotas)
 
-
-app.listen(process.env.PORT,()=>{
-    criarTabelas()
+//
+app.listen(process.env.PORT, () => {
+    sequelize.sync()
     console.log(`servidor rodando na porta ${process.env.PORT}`)
 })
