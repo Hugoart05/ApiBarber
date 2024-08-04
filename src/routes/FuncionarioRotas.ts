@@ -6,6 +6,7 @@ import { Router } from "express";
 //    createFuncionarioController.handle(req,res)
 // })
 export const funcionarioRotas = Router()
+
 funcionarioRotas.post('/funcionario', (req,res)=>{
     createFuncionarioController.handle(req, res)
 })

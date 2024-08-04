@@ -1,4 +1,4 @@
-import { Model, Optional } from "sequelize"
+import { DataTypes, Model, Optional } from "sequelize"
 import { DataType } from "sequelize-typescript"
 import { sequelize } from "../db/Instancia"
 interface IAgendamento {
@@ -21,24 +21,24 @@ export class Agendamento extends Model<IAgendamento, AgendamentoCreationAttribut
 
 Agendamento.init({
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     funcionarioId: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     clienteId: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     dataHora: {
-        type: DataType.DATE,
+        type: DataTypes.DATE,
         allowNull: false
     },
     pagamento: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
 

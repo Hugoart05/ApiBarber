@@ -29,28 +29,28 @@ export class Estabelecimento extends Model<IEstabelecimento, IEstabelecimentoCre
 
 Estabelecimento.init({
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
     nome: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     usuarioId: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     urlLogo: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: true
     },
     urlPlanoDeFundo: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: true
     },
     categoriaId: {
-        type: DataType.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     descricao: {
@@ -65,4 +65,5 @@ Estabelecimento.init({
     }
 )
 
-Estabelecimento.hasMany(Funcionario, {foreignKey:"usuarioId"})
+Funcionario.belongsTo(Estabelecimento, {foreignKey:"estabelecimentoId"})
+Estabelecimento.hasMany(Funcionario, {foreignKey:"estabelecimentoId"})

@@ -11,7 +11,7 @@ export class CreateFuncionarioUseCase {
 
     async execute({ nome, cargo, usuarioId, email }: FuncionarioDTO) {
         const userExist = this.userRepositorio.findById(usuarioId)
-        const funcionarioExist = this.funcionarioRepositorio.getAll(usuarioId)
+        const funcionarioExist = await this.funcionarioRepositorio.getAll(usuarioId)
         console.log(userExist)
         if (userExist == null)
             throw new Error("Usuario não authenticado ou nao existe")

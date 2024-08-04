@@ -12,14 +12,17 @@ app.use(funcionarioRotas)
 app.use(userRotas)
 
 //
-app.listen(process.env.PORT,async () => {
-    try{
+app.listen(process.env.PORT, async () => {
+    try {
         await sequelize.authenticate();
         console.log("sequelize: autenticacão no banco realizada")
-        const sinc = await sequelize.sync({force:true})
-        console.log("atualização de tabelas realizada com sucesso!")
+        const db = await sequelize.sync({ force: true })
+        console.log("atualização de tabelas realizada com sucesso!", 
+
+            db
+        )
         console.log("Servidor rodando na porta 8080")
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
     console.log(`servidor rodando na porta ${process.env.PORT}`)

@@ -1,7 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize"
 import { User } from "./Usuarios"
 import { sequelize } from "../db/Instancia"
-import { AllowNull } from "sequelize-typescript"
+import { AllowNull, DataType } from "sequelize-typescript"
 import { Agendamento } from "./Agendamento"
 import { Estabelecimento } from "./Estabelecimento"
 
@@ -12,8 +12,7 @@ export interface FuncionarioAtributos {
     nome: string
     cargo?: string
     email:string
-    lat?:string
-    long?:string
+    estabelecimentoId:number
 }
 
 interface FuncionarioCreationAtributos extends Optional<FuncionarioAtributos, 'id'> { }
@@ -24,6 +23,7 @@ export class Funcionario extends Model<FuncionarioAtributos, FuncionarioCreation
     public nome!: string
     public cargo?: string;
     public email!:string;
+    public estabelecimentoId!: number
 }
 
 Funcionario.init({
@@ -48,7 +48,10 @@ Funcionario.init({
         type:DataTypes.STRING,
         allowNull: false
     },
-    
+    estabelecimentoId:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+    }
 },
     {
         sequelize,
